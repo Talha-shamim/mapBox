@@ -8,13 +8,33 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
 <style>
 	body { margin: 0; padding: 0; }
 	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    
 </style>
 </head>
 <body>
+    
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+type="text/css"
+/>
 <div id="map"></div>
+<!-- geocoder search input -->
+<div class="geocoder">
+    <div id="geocoder" ></div>
+</div>
+<!-- left side instructions -->
+<div id='instructions'>
+    <div id="calculated-line"></div>
+</div>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoidGFsaGFzaGFtaW0iLCJhIjoiY2trbXVjc3ltMW55MTJxdGQxaWNpZ2F0ZyJ9.hK8YcV_nYafZXbTUS4lMUQ';
     var map = new mapboxgl.Map({
@@ -83,6 +103,15 @@
             trackUserLocation: true
         })
     );
+
+    map.addControl(
+    new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+    }),
+    'top-left'
+    );
+
+    
 </script>
 
 </body>
